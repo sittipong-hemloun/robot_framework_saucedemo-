@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+
+# Robot Framework output files
+output/
+log/
+report/
+results/
+*.html
+*.xml
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
