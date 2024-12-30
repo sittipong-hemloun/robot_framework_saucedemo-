@@ -1,23 +1,21 @@
 *** Settings ***
-Documentation    Test case for valid login
-Resource         ../../resources/keywords/login_page.robot
+Documentation       Test cases for user login
+
+Resource            ../../resources/keywords/login_page.robot
+Library             DataDriver    file=data/account.csv    encoding=utf_8    dialect=unix
+
+Test Teardown       Close Browser
+Test Template       Invalid Login Template
 
 *** Test Cases ***
-Valid User Can Login
-    [Documentation]   Valid that a user can login with valid credentials
-    Open Login Page
-    Enter Username    standard_user
-    Enter Password    secret_sauce
-    Click Login
-    Page Should Contain    Products
-    [Teardown]    Close Browser
+Login with user ${username} and password ${password} and expect error message ${error_message}    None    None    None
 
-Invalid User Cannot Login
-    [Documentation]   Valid that a user cannot login with invalid credentials
-    Open Login Page
-    Enter Username    invalid_user
-    Enter Password    invalid_password
-    Click Login
-    Should See Error Message     Epic sadface: Username and password do not match any user in this service
-    [Teardown]    Close Browser
 
+*** Keywords ***
+Invalid Login Template
+    [Arguments]    ${username}    ${password}    ${error_message}
+    Open Login Page
+    Enter Username    ${username}
+    Enter Password    ${password}
+    Click Login
+    Should See Error Message    ${error_message}
