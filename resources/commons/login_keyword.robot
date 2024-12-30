@@ -1,7 +1,10 @@
 *** Settings ***
 Library     SeleniumLibrary
 Resource    ../keywords/login_page.robot
-Resource    ../commons/global_variables.robot
+
+*** Variables ***
+${VALID_USERNAME}    standard_user
+${VALID_PASSWORD}    secret_sauce
 
 *** Keywords ***
 Valid User Can Login

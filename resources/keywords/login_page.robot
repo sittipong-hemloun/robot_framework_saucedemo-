@@ -6,7 +6,8 @@ Resource    ../variables/login_variable.robot
 *** Keywords ***
 Open Login Page
     [Documentation]    Navigate to the login page
-    Go To    ${URL}
+    Open Browser    ${URL}    chrome
+    Maximize Browser Window
 
 Enter Username
     [Arguments]    ${username}
