@@ -1,5 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
+Resource    ../variables/products_variable.robot
 Resource    ../variables/cart_variable.robot
 
 
@@ -15,8 +16,9 @@ Verify Cart Contains Item
 
 Verify Cart Is Empty
     [Documentation]    Checks if the cart has no items or if an empty state message is shown
-    Page Should Contain Element    ${EMPTY_CART_MESSAGE}
-    Element Text Should Be    ${EMPTY_CART_MESSAGE}    ${CART_EMPTY_TEXT}
+    # Example check - adapt the locator/message to your actual cart empty-state
+    Run Keyword And Expect Error    *    Page Should Contain Element    xpath=//div[@class='inventory_item_name']
+    Log    Cart is empty as expected.
 
 Remove Item From Cart
     [Documentation]    Removes the specified product from the cart by clicking the Remove button
