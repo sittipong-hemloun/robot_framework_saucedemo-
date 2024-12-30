@@ -14,6 +14,7 @@ report/
 results/
 *.html
 *.xml
+*.png
 
 # OS-specific files
 .DS_Store

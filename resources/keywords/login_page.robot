@@ -1,13 +1,15 @@
 *** Settings ***
 Library     SeleniumLibrary
 Resource    ../variables/login_variable.robot
+Resource   ../commons/keywords/browser_keywords.robot
 
 
 *** Keywords ***
 Open Login Page
     [Documentation]    Navigate to the login page
-    Open Browser    ${URL}    chrome
-    Maximize Browser Window
+    # Open Browser    ${URL}    chrome
+    # Maximize Browser Window
+    Open Browser And Navigate    ${URL}
 
 Enter Username
     [Arguments]    ${username}

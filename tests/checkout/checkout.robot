@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Test cases for the checkout process
 
-Resource            ../../resources/commons/login_keyword.robot
+Resource            ../../resources/commons/keywords/login_keyword.robot
 Resource            ../../resources/keywords/products_page.robot
 Resource            ../../resources/keywords/cart_page.robot
 Resource            ../../resources/keywords/checkout_page.robot
