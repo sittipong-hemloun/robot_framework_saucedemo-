@@ -2,7 +2,7 @@
 Documentation       Test cases for user login
 
 Resource            ../../resources/keywords/login_page.robot
-Library             DataDriver    file=data/account.csv    encoding=utf_8    dialect=unix
+Library             DataDriver    file=data/invalid_account.csv    encoding=utf_8    dialect=unix
 
 Test Teardown       Close Browser
 Test Template       Invalid Login Template

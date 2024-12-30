@@ -5,7 +5,7 @@ Resource            ../../resources/keywords/login_page.robot
 
 
 *** Test Cases ***
-valid Login Template
+Valid Login Template
     Open Login Page
     Enter Username    standard_user
     Enter Password    secret_sauce

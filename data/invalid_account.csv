@@ -1,4 +1,3 @@
 *** Test Cases ***,${username},${password},${error_message}
-Valid User Credential,standard_user,secret_sauce,
 Invalid User Credential 1,invalid_user1,invalid_password1,Epic sadface: Username and password do not match any user in this service
 Invalid User Credential 2,invalid_user2,invalid_password2,Epic sadface: Username and password do not match any user in this service
