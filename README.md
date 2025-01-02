@@ -23,9 +23,14 @@ This project uses Robot Framework to automate the testing of the [Sauce Demo](ht
     pip install -r requirements.txt
     ```
 4. **Run Tests**
+   run all tests
     ```bash
-    robot robotfile.robot
-      ```
+    ./scripts/run_tests.sh
+    ```
+    run smoke tests
+    ```bash
+    ./scripts/run_smoke_tests.sh
+    ```
 5. **Deactivate Virtual Environment**
     ```bash
     deactivate
