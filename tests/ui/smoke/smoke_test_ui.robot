@@ -21,7 +21,7 @@ Suite Teardown      Close Browser
 
 
 *** Variables ***
-${CONFIG_FILE_PATH}     resources/config/product_list.json
+${CONFIG_FILE_PATH}     data/product_list.json
 ${FIRST_NAME}           Sittipong
 ${LAST_NAME}            Hemloun
 ${ZIP_CODE}             20130
