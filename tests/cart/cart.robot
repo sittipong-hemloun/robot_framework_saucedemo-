@@ -5,7 +5,7 @@ Resource            ../../resources/commons/keywords/login_keyword.robot
 Resource            ../../resources/keywords/products_page.robot
 Resource            ../../resources/keywords/cart_page.robot
 
-Test Setup         Valid User Can Login
+Suite Setup         Valid User Can Login
 Suite Teardown      Close Browser
 
 
@@ -24,12 +24,15 @@ Verify Cart Is Empty By Default
 
 Add Single Item And Verify In Cart
     [Documentation]    Add a single product, then open the cart and verify its presence
+    Valid User Can Login
     Add Product To Cart    Sauce Labs Backpack
     Open Cart Page
     Verify Cart Contains Item    Sauce Labs Backpack
 
 Add Multiple Items And Verify In Cart
     [Documentation]    Add multiple products, then verify they are in the cart
+    # Open Browser And Navigate    ${PRODUCTS_URL}
+    Valid User Can Login
     Add Product To Cart    Sauce Labs Backpack
     Add Product To Cart    Sauce Labs Bolt T-Shirt
     Open Cart Page
@@ -38,6 +41,7 @@ Add Multiple Items And Verify In Cart
 
 Remove Single Item From Cart
     [Documentation]    Add and then remove an item, verifying removal
+    Valid User Can Login
     Add Product To Cart    Sauce Labs Fleece Jacket
     Open Cart Page
     Verify Cart Contains Item    Sauce Labs Fleece Jacket
@@ -47,6 +51,7 @@ Remove Single Item From Cart
 
 Empty Cart Scenario
     [Documentation]    Add multiple items, remove them all, and verify cart is empty
+    Valid User Can Login
     Add Product To Cart    Sauce Labs Backpack
     Add Product To Cart    Sauce Labs Bolt T-Shirt
     Add Product To Cart    Sauce Labs Onesie
