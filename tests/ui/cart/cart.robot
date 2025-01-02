@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation       Test cases for cart functionality
 
-Resource            ../../resources/commons/keywords/login_keyword.robot
-Resource            ../../resources/keywords/products_page.robot
-Resource            ../../resources/keywords/cart_page.robot
+Resource            ../../../resources/commons/keywords/login_keyword.robot
+Resource            ../../../resources/keywords/products_page.robot
+Resource            ../../../resources/keywords/cart_page.robot
 
 Suite Setup         Valid User Can Login
 Suite Teardown      Close Browser

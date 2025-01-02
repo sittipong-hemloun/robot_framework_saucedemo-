@@ -11,11 +11,11 @@ Documentation       This is a smoke test suite that demonstrates a simple workfl
 Library             Collections
 Library             JSONLibrary
 Library             SeleniumLibrary
-Resource            ../../resources/commons/keywords/browser_keywords.robot
-Resource            ../../resources/commons/keywords/login_keyword.robot
-Resource            ../../resources/keywords/products_page.robot
-Resource            ../../resources/keywords/cart_page.robot
-Resource            ../../resources/keywords/checkout_page.robot
+Resource            ../../../resources/commons/keywords/browser_keywords.robot
+Resource            ../../../resources/commons/keywords/login_keyword.robot
+Resource            ../../../resources/keywords/products_page.robot
+Resource            ../../../resources/keywords/cart_page.robot
+Resource            ../../../resources/keywords/checkout_page.robot
 
 Suite Teardown      Close Browser
 

@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Test cases for user login
 
-Resource            ../../resources/keywords/login_page.robot
+Resource            ../../../resources/keywords/login_page.robot
 Library             DataDriver    file=data/invalid_account.csv    encoding=utf_8    dialect=unix
 
 Test Teardown       Close Browser

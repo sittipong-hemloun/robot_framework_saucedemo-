@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Test cases for user login
 
-Resource            ../../resources/keywords/login_page.robot
+Resource            ../../../resources/keywords/login_page.robot
 
 
 *** Test Cases ***
