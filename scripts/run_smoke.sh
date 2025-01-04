@@ -1,2 +1,2 @@
 #!/bin/bash
-robot -d results/reports tests/smoke
+robot -d results/reports tests/ui/smoke
