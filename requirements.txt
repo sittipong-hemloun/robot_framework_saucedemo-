@@ -1,3 +1,5 @@
 robotframework
 robotframework-seleniumlibrary
 selenium
+robotframework-pabot
+robotframework-requests
