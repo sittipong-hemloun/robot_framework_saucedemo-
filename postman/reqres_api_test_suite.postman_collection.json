@@ -1,0 +1,482 @@
+{
+	"info": {
+		"_postman_id": "3c594673-3d28-4712-b511-6b86dc7ba163",
+		"name": "ReqRes API Test Suite",
+		"description": "Postman Collection for testing ReqRes API (Create, Get, Update, Delete, and additional tests)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36446143",
+		"_collection_link": "https://www.postman.com/material-cosmologist-84657152/workspace/testcase/collection/36446143-3c594673-3d28-4712-b511-6b86dc7ba163?action=share&source=collection_link&creator=36446143"
+	},
+	"item": [
+		{
+			"name": "Create User Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var requiredFields = ['name', 'job', 'id', 'createdAt'];",
+							"    requiredFields.forEach(function(field) {",
+							"        pm.expect(jsonData).to.have.property(field);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Name and Job are correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(pm.environment.get('create_user_name'));",
+							"    pm.expect(jsonData.job).to.eql(pm.environment.get('create_user_job'));",
+							"});",
+							"",
+							"pm.test(\"createdAt is in correct format\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.createdAt).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z/);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{create_user_name}}\",\n    \"job\": \"{{create_user_job}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single User Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has 'data' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('data');",
+							"});",
+							"",
+							"pm.test(\"Data has required fields\", function () {",
+							"    var jsonData = pm.response.json().data;",
+							"    var requiredFields = ['id', 'email', 'first_name', 'last_name', 'avatar'];",
+							"    requiredFields.forEach(function(field) {",
+							"        pm.expect(jsonData).to.have.property(field);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"User ID is correct\", function () {",
+							"    var jsonData = pm.response.json().data;",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.environment.get('user_id')));",
+							"});",
+							"",
+							"pm.test(\"Email is in correct format\", function () {",
+							"    var jsonData = pm.response.json().data;",
+							"    pm.expect(jsonData.email).to.match(/^[\\w.-]+@[\\w.-]+\\.\\w+$/);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var requiredFields = ['name', 'job', 'updatedAt'];",
+							"    requiredFields.forEach(function(field) {",
+							"        pm.expect(jsonData).to.have.property(field);",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Name and Job are updated correctly\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.eql(pm.environment.get('update_user_name'));",
+							"    pm.expect(jsonData.job).to.eql(pm.environment.get('update_user_job'));",
+							"});",
+							"",
+							"pm.test(\"updatedAt is in correct format\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.updatedAt).to.match(/\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.\\d{3}Z/);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{update_user_name}}\",\n    \"job\": \"{{update_user_job}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"Response body is empty\", function () {",
+							"    pm.expect(pm.response.text()).to.be.empty;",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Non-Existing User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/9999",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"9999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User with Invalid Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Job is updated to empty string\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.job).to.eql(\"\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{update_user_name}}\",\n    \"job\": \"\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/users/{{user_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"{{user_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Users with Pagination",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains 'page' and 'data' fields\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('page');",
+							"    pm.expect(jsonData).to.have.property('data');",
+							"});",
+							"",
+							"pm.test(\"Page number is correct\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.page).to.eql(2);",
+							"});",
+							"",
+							"pm.test(\"Data array has 6 items\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data).to.be.an('array').that.has.lengthOf(6);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users?page=2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains 'id' and 'token' fields\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('id');",
+							"    pm.expect(jsonData).to.have.property('token');",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{valid_user_email}}\",\n    \"password\": \"{{valid_user_password}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User with Missing Password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response contains error message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('error');",
+							"    pm.expect(jsonData.error).to.include(pm.environment.get('error_missing_password'));",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{valid_user_email}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User Successfully",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response contains 'token' field\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('token');",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{valid_user_email}}\",\n    \"password\": \"{{valid_user_password}}\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
