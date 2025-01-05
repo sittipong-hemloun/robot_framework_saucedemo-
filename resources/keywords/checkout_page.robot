@@ -38,12 +38,12 @@ Verify 8 Percent Tax
     [Documentation]    Captures item total and tax from the overview page. Ensures the displayed tax is 8%.
     [Arguments]    ${expected_tax_rate}
     ${item_total_text}=    Get Text    xpath=//div[@class='summary_subtotal_label']
-    # Example: item_total_text might be "Item total: $29.99"
+    # Example: item_total_text might be "Item total: $31.98"
     ${item_total}=    Evaluate    re.search(r'[0-9]+\\.[0-9]+', '''${item_total_text}''').group(0)    re
     ${item_total}=    Convert To Number    ${item_total}
 
     ${tax_text}=    Get Text    xpath=//div[@class='summary_tax_label']
-    # Example: tax_text might be "Tax: $2.40"
+    # Example: tax_text might be "Tax: $2.56"
     ${tax_amount}=    Evaluate    re.search(r'[0-9]+\\.[0-9]+', '''${tax_text}''').group(0)    re
     ${tax_amount}=    Convert To Number    ${tax_amount}
 

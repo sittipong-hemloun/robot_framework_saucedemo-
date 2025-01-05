@@ -44,11 +44,11 @@ Add All Products By Include Text In Name
 Add Product To Cart If Found
     [Documentation]    Tries to add ${product_name} to the cart. If not found, logs a warning and continues.
     [Arguments]    ${product_name}
-    Run Keyword And Ignore Error    Add All Products By Include Text In Name    ${product_name}
-    ${err}=    Run Keyword And Return Status
+    Add All Products By Include Text In Name    ${product_name}
+    ${status}=    Run Keyword And Return Status
     ...    Page Should Contain Element
     ...    xpath=//div[contains(@class, 'inventory_item_name') and contains(text(), '${product_name}')]
-    IF    '${err}' == 'False'
+    IF    '${status}' == 'False'
         Log    WARNING: Product "${product_name}" was not found and could not be added.    WARN
     END
 
