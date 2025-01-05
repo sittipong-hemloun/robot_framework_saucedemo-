@@ -54,6 +54,10 @@ This project uses Robot Framework to automate the testing of the [Sauce Demo](ht
    ```bash
     pip install -r requirements.txt
    ```
+   modify scripts permission
+   ```bash
+    chmod +x ./scripts/*.sh
+   ```
 4. **Run Tests**
    run all tests
    ```bash
@@ -65,7 +69,7 @@ This project uses Robot Framework to automate the testing of the [Sauce Demo](ht
    ```
    run parallel tests
    ```bash
-     ./scripts/run_parallel_tests.sh
+   ./scripts/run_parallel_tests.sh
    ```
 5. **Deactivate Virtual Environment**
    ```bash
