@@ -32,6 +32,7 @@ This project uses Robot Framework to automate the testing of the [Sauce Demo](ht
 
   - `run_tests.sh`: Runs all tests.
   - `run_smoke.sh`: Runs only the smoke tests.
+  - `run_parallel.sh`: Runs tests in parallel.
 
 - **data**  
   Holds test data files, such as JSON files (`product_list.json`) or CSV files (`invalid_account.csv`).
@@ -58,20 +59,28 @@ This project uses Robot Framework to automate the testing of the [Sauce Demo](ht
    ```bash
     chmod +x ./scripts/*.sh
    ```
-4. **Run Tests**
+4. **Set Executable Permissions:**
+   ```bash
+    chmod +x drivers/chromedriver
+    chmod +x drivers/geckodriver
+   ```
+   ```bash
+    chmod +x ./scripts/*.sh
+   ```
+5. **Run Tests**
    run all tests
    ```bash
-   ./scripts/run_tests.sh
+   ./scripts/run_tests.sh chrome
    ```
    run smoke tests
    ```bash
-   ./scripts/run_smoke_tests.sh
+   ./scripts/run_smoke_tests.sh chrome
    ```
    run parallel tests
    ```bash
-   ./scripts/run_parallel_tests.sh
+   ./scripts/run_parallel_tests.sh chrome
    ```
-5. **Deactivate Virtual Environment**
+6. **Deactivate Virtual Environment**
    ```bash
    deactivate
    ```

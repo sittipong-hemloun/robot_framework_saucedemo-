@@ -1,2 +1,4 @@
 #!/bin/bash
-robot -d results/reports tests/ui/smoke
+# Usage: ./run_smoke.sh [browser]
+BROWSER=${1:-chrome}
+robot -d results/reports -v BROWSER:${BROWSER} tests/ui/smoke
